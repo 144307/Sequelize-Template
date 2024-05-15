@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="./pages/index.css" />
+  </head>
+  <body>
+    <header class="header">
+      <a href="/login">
+        <input type="button" value="Login" />
+      </a>
+      <a href="/register">
+        <input type="button" value="Register" />
+      </a>
+      <a href="/adminpanel">
+        <input type="button" value="Аdmin Panel" />
+      </a>
+    </header>
+    <h1>Index Page</h1>
+    <form id="registerForm">
+      <h2>Register Form</h2>
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required value="W" />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required value="w@w" />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          value="w"
+        />
+      </div>
+      <button type="submit">Register</button>
+    </form>
+    <button id="testButton">TestDB</button>
+    <button id="placeOrder">place order</button>
+
+    <lu class="product-list">
+      <li>
+        <form>Test Item 1</form>
+      </li>
+      <li>
+        <form>Test Item 2</form>
+      </li>
+    </lu>
+  </body>
+  <template id="productCard">
+    <li>
+      <form>
+        <h3>productCard</h3>
+        <div class="counterWrapper">
+          <button name="plus">+</button>
+          <button name="minus">-</button>
+        </div>
+      </form>
+    </li>
+  </template>
+  <script type="module" src="./index.js"></script>
+</html>
