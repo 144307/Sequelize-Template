@@ -19,8 +19,15 @@ function initialize(passport, getUserByEmail, getUserById) {
   };
   passport.use(new LocalStrategy({ usernameField: "email" }, authenticateUser));
   passport.serializeUser((user, done) => {
+    console.log("user", user);
     done(null, user.id);
   });
+  // passport.serializeUser(function (user, cb) {
+  //   process.nextTick(function () {
+  //     return cb(null, user.id);
+  //   });
+  // });
+
   passport.deserializeUser((id, done) => {
     return done(null, getUserById(id));
   });

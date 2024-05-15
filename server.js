@@ -93,7 +93,7 @@ app.post("/register", async (req, res) => {
     });
     res.sendFile("login.html", { root: __dirname });
   } catch {
-    res.sendFile("register.html", { root: __dirname });
+    // res.sendFile("register.html", { root: __dirname });
   }
   console.log("users:", users);
 });
@@ -102,27 +102,39 @@ app.get("/login", (req, res) => {
   console.log("/login");
   res.sendFile("login.html", { root: __dirname });
 });
-app.post("/login", function (req, res, next) {
-  passport.authenticate("local", function (err, user, info) {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      res.sendFile("login.html", { root: __dirname });
-    }
-    req.logIn(user, function (err) {
-      if (err) {
-        return next(err);
-      }
-      res.sendFile("index.html", { root: __dirname });
-    });
-  })(req, res, next);
-});
+// app.post("/login", function (req, res, next) {
+//   passport.authenticate("local", function (err, user, info) {
+//     if (err) {
+//       return next(err);
+//     }
+//     if (!user) {
+//       console.log("no user");
+//       res.sendFile("login.html", { root: __dirname });
+//     }
+//     req.logIn(user, function (err) {
+//       if (err) {
+//         return next(err);
+//       }
+//       res.sendFile("index.html", { root: __dirname });
+//     });
+//   })(req, res, next);
+// });
+
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/adminPanel",
+    successRedirect: "/",
+  }),
+  function (req, res) {
+    res.redirect("/");
+  }
+);
 // passport.authenticate("local", {
 //   successRedirect: "/",
 //   failureRedirect: "/login",
 //   failureFlash: true,
-// })
+// });
 
 app.get("/adminpanel", (req, res) => {
   console.log("/");
